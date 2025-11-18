@@ -1,4 +1,4 @@
-1. type ও interface
+### 1. type ও interface
 
 TypeScript এ টাইপ নির্ধারণের ক্ষেত্রে দুই ধরনের পদ্ধতি ব্যবহার করা হয়।
 একটি type কিওয়ার্ড এর মাধ্যমে অপরটি interface  কিওয়ার্ডের মাধ্যমে। 
@@ -7,8 +7,8 @@ TypeScript এ টাইপ নির্ধারণের ক্ষেত্র
 
 উদাহরনঃ
 
-type
------
+## type
+
 
 type Name = string;
 
@@ -43,8 +43,8 @@ type Student = {
 
 
 
-interface
-----------
+## interface
+
 interface Name = string;             |
                                      |-> interfase এর ক্ষেত্রে এভাবে ব্যবহার করা যায় না
  const studentName:Name = "Russell"  |                                 
@@ -98,16 +98,15 @@ interface Width extend Max {
 
 
 
-2.enum
+### 2.enum
 --------
 
 enum হল enumeration এর সংক্ষিপ্ত রুপ। enum এমন এক ধরনের class যার উপাদান গুলো সুনির্দিষ্ট ও অপরিবর্তনীয়।  সপ্তাহের সাত দিনের নাম, একটি বছরের ১২ মাসের নাম কিংবা  অন্যান্য নির্দিষ্ট মান নিয়ে enum গঠিত হয়। 
 
 enum দুই ধরনের হতে পারে- Numeric enum, String enum । 'enum' কিওয়ার্ড  দ্বারা enum সূচিত করা হয় ।
 
- Numeric enum
- ------------
- 
+
+ ## Numeric enum
 
  Numeric enam এর ক্ষেত্রে স্বয়ংক্রিয় ভাবে এর প্রথম উপাদান ০ দ্বারা সূচিত করা হয় এবং  পরবর্তী উপাদান গুলোর সাথে প্রতি ক্ষেত্রে ১ যোগ হয়। যেমন-
 
@@ -137,8 +136,8 @@ console.log(Dat.Mon) //2
 console.log(Position.second)//90
 
 
-String enum
-------------
+## String enum
+
 String enum এর উপাদান গুলো string।  সাধারণত ধ্রুবক মান দ্বারা কিংবা অন্য string enum এর মান দ্বারা string enum  সূচিত করা হয়। 
 String enum এর মানগুলো Numeric enum এর মানের মতো ক্রমশ বৃদ্ধি পায় না ।
 
