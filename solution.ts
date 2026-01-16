@@ -32,7 +32,7 @@ function getLength ( value : string | (string|number)[] ):number {
         return value.length
        }
 
-       return 10;
+        return 0;
 }
 
 
@@ -60,26 +60,15 @@ class Person {
 
 
 
-
-
-
-
-interface Book {
-  title:string;
-  rating:number;
+type ratedItem = {
+  title: string;
+  rating: number;
 };
 
 
-const books:Book[]=[
-  { title: 'Book A', rating: 4.5 },
-  { title: 'Book B', rating: 3.2 },
-  { title: 'Book C', rating: 5.0 }
-];
-
-function filterByRating(items:Book[]):Book[]{
+function filterByRating(items:ratedItem[]):ratedItem[]{
   return items.filter((item)=>item.rating >= 4)
-}
-
+};
 
 
 
@@ -92,20 +81,11 @@ type User = {
     name:string,
     email:string,
     isActive:boolean,
-}
-
-
-const users:User[] = [
-  { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
-  { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
-  { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
-];
-
-
+};
 
 const filterActiveUsers = (users:User[]):User[] => {
   return users.filter(user => user.isActive === true)
-}
+};
 
 
 
@@ -113,19 +93,19 @@ const filterActiveUsers = (users:User[]):User[] => {
 
 
 
-interface BookDetails {
-    title:string;
-    author:string;
-    publishedYear:number;
-    isAvailable:boolean;
-}
+interface Book {
+  title: string;
+  author: string;
+  publishedYear: number;
+  isAvailable: boolean;
+};
 
 
-function printBookDetails (book:BookDetails):string  {
-
-  const Available=book.isAvailable ? 'Yes' : 'No';
-
-  return (`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${Available}`);
+function printBookDetails(book: Book): void {
+  const availability = book.isAvailable ? "Yes" : "No";
+  console.log(
+    `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availability}`
+  );
 };
 
 
@@ -136,40 +116,30 @@ function printBookDetails (book:BookDetails):string  {
 
 
 
-function getUniqueValues (arr1: (string | number)[], arr2: (string | number)[]): (string | number)[] {
+function getUniqueValues(arr1: (string | number)[], arr2: (string | number)[]): (string | number)[] {
+
+  const result: (string | number)[] = [];
 
 
-  const result:(string | number) [] = [];
-
-
-  function exist(value:string | number):boolean{
-
-    for(let i=0; i<result.length; i++ ){
-      if(result[i] === value){
-        return true;
-      }
+  function exists(value: string | number): boolean {
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] === value) return true;
     }
-
     return false;
-    
   };
 
-  for(let i=0; i<arr1.length; i++){
-    if(!exist(arr1[i])){
-      result[result.length] = arr1[i]
-    }
-  }
 
-  for(let i=0; i<arr2.length; i++){
-    if(!exist(arr2[i])){
-      result[result.length] = arr2[i]
-    }
-  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (!exists(arr1[i])) result.push(arr1[i]);
+  };
 
 
-  return result
+  for (let i = 0; i < arr2.length; i++) {
+    if (!exists(arr2[i])) result.push(arr2[i]);
+  };
 
-    
+  return result;
+
 };
 
 
@@ -180,28 +150,31 @@ function getUniqueValues (arr1: (string | number)[], arr2: (string | number)[]):
 
 
 type Product = {
-    name:string,
-    price:number,
-    quantity:number,
-    discount?:number,
-}
- 
-function calculateTotalPrice(products:Product[]):number {
-     if(products.length === 0){
-        return 0;
-     }
-
-    const price=products.map((product)=>{
-      const totalPrice=product.price * product.quantity;
-      const discount=product.discount ?? 0;
-      return  totalPrice -(totalPrice*discount)/100
-
-    })   
-    
-    return price.reduce((sum,price)=>sum+price)
-
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
 };
 
+
+
+function calculateTotalPrice(products: Product[]): number {
+
+  if (products.length === 0) {
+    return 0;
+  };
+
+
+ return products.map(product=>{
+
+  const totalPrice= product.price * product.quantity;
+  const discount = product.discount ?? 0;
+
+  return totalPrice - (totalPrice * discount )/ 100;
+ })
+ .reduce((sum,price)=>sum+price,0)
+
+};
 
 
 
